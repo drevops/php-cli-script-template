@@ -1,0 +1,29 @@
+{
+    "name": "drevops/php-cli-script-template",
+    "description": "This file is not required for running script.php. Used only for development.",
+    "autoload-dev": {
+        "classmap": [
+            "tests/phpunit/unit"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Alex Skrypnyk",
+            "email": "alex@integratedexperts.com"
+        }
+    ],
+    "scripts": {
+        "lint": "phpcs --standard=Drupal -s script.php tests",
+        "test": "phpunit tests/phpunit/unit"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+        "drupal/coder": "^8.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

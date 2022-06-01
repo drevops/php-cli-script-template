@@ -1,0 +1,18 @@
+version: 2
+aliases:
+
+jobs:
+  test:
+    docker:
+      - image: drevops/ci-builder
+    steps:
+      - checkout
+      - run: composer install
+      - run: composer lint
+      - run: composer test
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - test
