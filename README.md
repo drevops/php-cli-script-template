@@ -1,0 +1,1 @@
+# php-cli-script-template
