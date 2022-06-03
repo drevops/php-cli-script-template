@@ -1,4 +1,4 @@
-# PHP CLI script template.
+# PHP CLI script template
 
 PHP script template for single-file CLI scripts without dependency on external packages.
 
