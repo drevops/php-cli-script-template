@@ -3,6 +3,7 @@
 PHP script template for single-file CLI scripts without dependency on external packages.
 
 [![CircleCI](https://circleci.com/gh/drevops/php-cli-script-template/tree/main.svg?style=shield)](https://circleci.com/gh/drevops/php-cli-script-template/tree/main)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/drevops/php-cli-script-template)
 
 ## Usage
 
