@@ -40,6 +40,11 @@ define('EXIT_SUCCESS', 0);
 define('EXIT_ERROR', 1);
 
 /**
+ * Defines error level to be reported as an error.
+ */
+define('ERROR_LEVEL', E_USER_WARNING);
+
+/**
  * Main functionality.
  */
 function main(array $argv, $argc) {
@@ -107,6 +112,15 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 
+// Custom error handler to catch errors based on set ERROR_LEVEL.
+set_error_handler(function ($severity, $message, $file, $line) {
+  if (!(error_reporting() & $severity)) {
+    // This error code is not included in error_reporting.
+    return;
+  }
+  throw new ErrorException($message, 0, $severity, $file, $line);
+});
+
 // Allow to skip the script run.
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   try {
@@ -115,6 +129,12 @@ if (getenv('SCRIPT_RUN_SKIP') != 1) {
       throw new \Exception('Script exited without providing an exit code.');
     }
     exit($code);
+  }
+  catch (\ErrorException $exception) {
+    if ($exception->getSeverity() <= ERROR_LEVEL) {
+      print PHP_EOL . 'RUNTIME ERROR: ' . $exception->getMessage() . PHP_EOL;
+      exit($exception->getCode() == 0 ? EXIT_ERROR : $exception->getCode());
+    }
   }
   catch (\Exception $exception) {
     print PHP_EOL . 'ERROR: ' . $exception->getMessage() . PHP_EOL;
