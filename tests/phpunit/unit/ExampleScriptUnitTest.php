@@ -51,8 +51,13 @@ class ExampleScriptUnitTest extends ScriptUnitTestBase {
         'PHP CLI script template.',
       ],
       [
+        [],
+        1,
+        'PHP CLI script template.',
+      ],
+      [
         [1, 2],
-        0,
+        1,
         'PHP CLI script template.',
       ],
 
