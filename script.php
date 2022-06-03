@@ -43,14 +43,17 @@ define('EXIT_ERROR', 1);
  * Main functionality.
  */
 function main(array $argv, $argc) {
-  // Show help if not enough or more than required arguments, or help was
-  // explicitly called.
-  if ($argc < 2
-    || $argc > 2
-    || in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])
-  ) {
+  if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
     print_help();
+
     return EXIT_SUCCESS;
+  }
+
+  // Show help if not enough or more than required arguments.
+  if ($argc < 2 || $argc > 2) {
+    print_help();
+
+    return EXIT_ERROR;
   }
 
   // Add your logic here.
